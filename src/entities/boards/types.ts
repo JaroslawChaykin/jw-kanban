@@ -8,7 +8,7 @@ export interface IBoard {
 export interface IColumn {
   id: string;
   name: string;
-  color: string;
+  color: EColors;
   tasks?: ITask[];
 }
 
@@ -23,4 +23,12 @@ export interface ITask {
 export interface IExecutor {
   id: string;
   name: string;
+}
+
+export enum EColors {
+  RED = "#F45B69",
+  ORANGE = "#FF9914",
+  GREEN = "#5CF64A",
+  BLUE = "#2176AE",
+  GRAY = "#F2EDEB",
 }
