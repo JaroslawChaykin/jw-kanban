@@ -7,6 +7,7 @@ export interface IBoard {
 
 export interface IColumn {
   id: string;
+  boardId: string;
   name: string;
   color: EColors;
   tasks?: ITask[];
@@ -14,6 +15,8 @@ export interface IColumn {
 
 export interface ITask {
   id: string;
+  columnId: string;
+  boardId: string;
   name: string;
   description?: string;
   tags?: string[];
