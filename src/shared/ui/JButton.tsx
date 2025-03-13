@@ -7,6 +7,8 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const ButtonStyled = styled.button`
   width: 100%;
+  font-family: "LTSuperior";
+  font-weight: 400;
 `;
 
 export const JButton: FC<ButtonProps> = ({ label, ...rest }) => {

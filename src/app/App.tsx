@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { StoreProvider } from "./providers/StoreProvider";
 import { NavBar } from "../widgets/navbar";
 import { Board } from "../widgets/board";
+import { GlobalFonts } from "./styles/fonts";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,6 +16,7 @@ const Wrapper = styled.div`
 export const App = () => {
   return (
     <StoreProvider>
+      <GlobalFonts />
       <Wrapper>
         <NavBar />
         <Board />
