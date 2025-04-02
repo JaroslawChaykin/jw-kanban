@@ -15,15 +15,13 @@ const Overlay = styled.div`
   bottom: 0;
   z-index: 1000;
   background: rgba(0, 0, 0, 0.5);
-`;
-
-const ModalContent = styled.div`
-  width: 100%;
-  height: 100%;
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ModalContent = styled.div`
+  position: relative;
 `;
 
 export const Modal: FC<ModalProps> = ({ isOpen, onClose, children }) => {
