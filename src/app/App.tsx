@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { StoreProvider } from "./providers/StoreProvider";
 import { NavBar } from "../widgets/navbar";
 import { Board } from "../widgets/board";
 import { GlobalFonts } from "./styles/fonts";
+import { theme } from "./styles/theme";
 
 const Wrapper = styled.div`
   display: flex;
@@ -10,17 +11,19 @@ const Wrapper = styled.div`
   width: 100vw;
   overflow: hidden;
   padding: 5px;
-  background: black;
+  background: ${({ theme }) => theme.colors.wrapper_bg};
 `;
 
 export const App = () => {
   return (
     <StoreProvider>
-      <GlobalFonts />
-      <Wrapper>
-        <NavBar />
-        <Board />
-      </Wrapper>
+      <ThemeProvider theme={theme}>
+        <GlobalFonts />
+        <Wrapper>
+          <NavBar />
+          <Board />
+        </Wrapper>
+      </ThemeProvider>
     </StoreProvider>
   );
 };

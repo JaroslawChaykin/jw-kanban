@@ -7,8 +7,8 @@ const BoardStyled = styled.div`
   height: 100%;
   padding: 10px;
   border-radius: 4px;
-  color: #ffffff;
-  background: #101214;
+  color: ${({ theme }) => theme.colors.fontColorMain};
+  background: ${({ theme }) => theme.colors.bg};
   overflow-x: scroll;
   overflow-y: hidden;
 `;
