@@ -5,9 +5,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: ReactNode;
   full?: boolean;
   label: ReactNode | string;
+  outlined?: boolean;
 }
 
-const ButtonStyled = styled.button<{ $fullWidth: boolean }>`
+const ButtonStyled = styled.button<{ $fullWidth: boolean; $outlined: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,9 +19,17 @@ const ButtonStyled = styled.button<{ $fullWidth: boolean }>`
   font-weight: 700;
   font-size: 16px;
   border-radius: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.border};
+  border: ${({ theme, $outlined }) =>
+    `1px solid ${
+      $outlined ? theme.colors.border : theme.colors.accentPrimary
+    }`};
   background: ${({ theme }) => theme.colors.accentPrimary};
   color: ${({ theme }) => theme.colors.fontColorMain};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.accentPrimaryHover};
+  }
 `;
 
 const IconStyled = styled.span`
@@ -32,10 +41,11 @@ export const JButton: FC<ButtonProps> = ({
   label,
   icon,
   full = false,
+  outlined = false,
   ...rest
 }) => {
   return (
-    <ButtonStyled {...rest} $fullWidth={full}>
+    <ButtonStyled {...rest} $fullWidth={full} $outlined={outlined}>
       {icon && <IconStyled>{icon}</IconStyled>}
       <span>{label}</span>
     </ButtonStyled>

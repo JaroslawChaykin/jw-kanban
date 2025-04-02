@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
+const BoardOutStyled = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+`;
+
 const BoardStyled = styled.div`
   display: flex;
   gap: 10px;
   width: 100%;
   height: 100%;
-  padding: 10px;
   border-radius: 4px;
   color: ${({ theme }) => theme.colors.fontColorMain};
   background: ${({ theme }) => theme.colors.bg};
@@ -14,5 +19,9 @@ const BoardStyled = styled.div`
 `;
 
 export const Board = () => {
-  return <BoardStyled></BoardStyled>;
+  return (
+    <BoardOutStyled>
+      <BoardStyled></BoardStyled>
+    </BoardOutStyled>
+  );
 };
