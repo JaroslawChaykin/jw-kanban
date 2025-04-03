@@ -8,6 +8,7 @@ const colors = {
   accentSecondary: "#1C2023",
   taskBg: "#1D1F20",
   border: "#2D2D2F",
+  input: "#2D3338",
 };
 
 export const theme = {
