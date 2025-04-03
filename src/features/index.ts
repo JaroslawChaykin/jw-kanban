@@ -1,1 +1,1 @@
-export { CreateBoardForm } from "./CreateBoardForm/CreateBoardForm";
+export { CreateBoardModal } from "./CreateBoardModal/ui/CreateBoardModal";

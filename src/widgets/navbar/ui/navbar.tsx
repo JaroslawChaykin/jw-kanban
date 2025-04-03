@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Title } from "../../../shared/ui";
-import { CreateBoardForm } from "../../../features";
+import { CreateBoardModal } from "../../../features";
 
 const Wrapper = styled.div`
   min-width: 250px;
@@ -13,7 +13,7 @@ export const NavBar = () => {
     <Wrapper>
       <div>
         <Title color="sub">Your kanban</Title>
-        <CreateBoardForm />
+        <CreateBoardModal />
       </div>
     </Wrapper>
   );
