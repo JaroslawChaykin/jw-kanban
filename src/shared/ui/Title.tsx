@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 type TitleProps = {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  color: "main" | "sub";
+  color?: "main" | "sub";
   weight?: 400 | 500 | 700 | 900;
   children: ReactNode;
 };

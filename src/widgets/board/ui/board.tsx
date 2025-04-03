@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Title } from "../../../shared/ui";
 
 const BoardOutStyled = styled.div`
   width: 100%;
@@ -21,7 +22,9 @@ const BoardStyled = styled.div`
 export const Board = () => {
   return (
     <BoardOutStyled>
-      <BoardStyled></BoardStyled>
+      <BoardStyled>
+        <Title color="sub">Your boards</Title>
+      </BoardStyled>
     </BoardOutStyled>
   );
 };
