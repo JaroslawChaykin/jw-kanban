@@ -1,9 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { MoveUpRight, X } from "lucide-react";
-import { JButton, Modal, Title } from "../../../shared/ui";
-import { IconButton } from "../../../shared/ui/IconButton";
+import { IconButton, JButton, Modal, Title } from "../../../shared/ui";
 import { CreateBoardForm } from "./CreateBoardForm";
+import { useAppDispatch } from "../../../shared/lib/redux";
+import { createBoard } from "../../../entities/boards/BoardActions";
 
 const ModalStyled = styled.div`
   display: flex;
@@ -24,9 +25,18 @@ const ModalHeaderStyled = styled.div`
 export const CreateBoardModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [boardName, setBoardName] = useState("");
+  const dispatch = useAppDispatch();
 
   const onSubmit = () => {
-    console.log(boardName);
+    dispatch(
+      createBoard({
+        name: boardName,
+        id: Math.random(),
+      })
+    );
+
+    setIsModalOpen(false);
+    setBoardName("");
   };
 
   return (
