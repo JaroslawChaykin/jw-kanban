@@ -6,6 +6,8 @@ const InputStyled = styled.input`
   height: 60px;
   padding: 0 20px;
   font-size: 18px;
+  font-family: "LTSuperior", sans-serif;
+  font-weight: 700;
   border: none;
   border-radius: 14px;
   background: ${(props) => props.theme.colors.input};

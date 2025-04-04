@@ -3,13 +3,24 @@ import styled from "styled-components";
 import { Plus, Trash } from "lucide-react";
 import { JButton, JInput } from "../../../shared/ui";
 
-type CreateBoardFormProps = {
-  setIsModalOpen: () => void;
-  isEdit?: boolean;
+interface CreateBoardFormProps {
   boardName: string;
+  setIsModalOpen: () => void;
   handleBoardName: (value: string) => void;
   handleSubmit: () => void;
-};
+}
+
+interface WithEditProps extends CreateBoardFormProps {
+  isEdit: true;
+  handleDeleteBoard: () => void;
+}
+
+interface NonEditProps extends CreateBoardFormProps {
+  isEdit?: false;
+  handleDeleteBoard?: never;
+}
+
+type CreateBoardProps = WithEditProps | NonEditProps;
 
 const FormStyled = styled.form`
   display: flex;
@@ -23,12 +34,13 @@ const ControlsStyled = styled.div`
   justify-content: flex-end;
 `;
 
-export const CreateBoardForm: FC<CreateBoardFormProps> = ({
+export const CreateBoardForm: FC<CreateBoardProps> = ({
   setIsModalOpen,
-  isEdit = false,
+  isEdit,
   boardName,
   handleBoardName,
   handleSubmit,
+  handleDeleteBoard,
 }) => {
   return (
     <FormStyled action={handleSubmit}>
@@ -45,6 +57,7 @@ export const CreateBoardForm: FC<CreateBoardFormProps> = ({
             onClick={() => {
               setIsModalOpen();
               handleBoardName("");
+              handleDeleteBoard();
             }}
           />
         )}

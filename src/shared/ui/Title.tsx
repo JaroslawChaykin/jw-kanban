@@ -33,7 +33,7 @@ const TitleStyled = styled(({ level = "h1", ...props }) => {
   font-weight: ${({ weight }) => weight};
   color: ${({ theme, color }) =>
     color === "main" ? theme.colors.fontColorMain : theme.colors.fontColorSub};
-  font-family: "LTSuperior";
+  font-family: "LTSuperior", sans-serif;
 `;
 
 export const Title: FC<TitleProps> = ({

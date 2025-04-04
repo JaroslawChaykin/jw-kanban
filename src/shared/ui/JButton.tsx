@@ -15,7 +15,7 @@ const ButtonStyled = styled.button<{ $fullWidth: boolean; $outlined: boolean }>`
   width: ${(props) => (props.$fullWidth ? "100%" : "auto")};
   padding: ${(props) => (props.$fullWidth ? 0 : "0px 12px")};
   height: 40px;
-  font-family: "LTSuperior";
+  font-family: "LTSuperior", sans-serif;
   font-weight: 700;
   font-size: 16px;
   border-radius: 10px;
