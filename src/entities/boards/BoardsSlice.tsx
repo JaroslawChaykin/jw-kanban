@@ -16,12 +16,18 @@ export const BoardsSlice = createSlice({
   initialState,
   reducers: {
     createBoard(state, action) {
+      const boardId = JSON.stringify(Math.random());
+
       const boardFields = {
-        id: action.payload.id,
+        id: boardId,
         name: action.payload.name,
         columns: [],
         executors: [],
       };
+
+      if (state.boards.length === 0) {
+        state.activeBoardId = boardId;
+      }
 
       state.boards.push(boardFields);
     },
@@ -36,6 +42,9 @@ export const BoardsSlice = createSlice({
 
         return board;
       });
+    },
+    setActiveBoard(state, action) {
+      state.activeBoardId = action.payload;
     },
   },
 });

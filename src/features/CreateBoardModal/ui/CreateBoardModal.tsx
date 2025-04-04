@@ -31,7 +31,6 @@ export const CreateBoardModal = () => {
     dispatch(
       createBoard({
         name: boardName,
-        id: Math.random(),
       })
     );
 
