@@ -14,3 +14,9 @@ const colors = {
 export const theme = {
   colors,
 };
+
+export type TColors = typeof colors;
+
+export interface ITheme {
+  colors: TColors;
+}
