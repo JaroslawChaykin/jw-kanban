@@ -30,6 +30,7 @@ const TitleStyled = styled(({ level = "h1", ...props }) => {
         return "32px";
     }
   }};
+
   font-weight: ${({ weight }) => weight};
   color: ${({ theme, color }) =>
     color === "main" ? theme.colors.fontColorMain : theme.colors.fontColorSub};
