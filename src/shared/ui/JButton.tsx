@@ -27,8 +27,13 @@ const ButtonStyled = styled.button<{ $fullWidth: boolean; $outlined: boolean }>`
   color: ${({ theme }) => theme.colors.fontColorMain};
   cursor: pointer;
 
-  &:hover {
+  &:not(:disabled):hover {
     background-color: ${({ theme }) => theme.colors.accentPrimaryHover};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 `;
 
