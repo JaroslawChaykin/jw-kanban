@@ -26,6 +26,7 @@ const ButtonStyled = styled.button<{ $fullWidth: boolean; $outlined: boolean }>`
   background: ${({ theme }) => theme.colors.accentPrimary};
   color: ${({ theme }) => theme.colors.fontColorMain};
   cursor: pointer;
+  user-select: none;
 
   &:not(:disabled):hover {
     background-color: ${({ theme }) => theme.colors.accentPrimaryHover};

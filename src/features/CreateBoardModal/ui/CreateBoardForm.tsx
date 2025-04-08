@@ -2,21 +2,26 @@ import { FC } from "react";
 import styled from "styled-components";
 import { Plus, Trash } from "lucide-react";
 import { JButton, JInput } from "../../../shared/ui";
+import { useForm } from "react-hook-form";
+
+export type BoardFormInputs = {
+  boardName: string;
+};
 
 interface CreateBoardFormProps {
-  boardName: string;
   setIsModalOpen: () => void;
-  handleBoardName: (value: string) => void;
-  handleSubmit: () => void;
+  onSubmit: (data: BoardFormInputs) => void;
 }
 
 interface WithEditProps extends CreateBoardFormProps {
   isEdit: true;
+  boardName: string;
   handleDeleteBoard: () => void;
 }
 
 interface NonEditProps extends CreateBoardFormProps {
   isEdit?: false;
+  boardName?: string;
   handleDeleteBoard?: never;
 }
 
@@ -34,21 +39,37 @@ const ControlsStyled = styled.div`
   justify-content: flex-end;
 `;
 
+const ErrorStyled = styled.p`
+  color: red;
+  font-size: 12px;
+`;
+
 export const CreateBoardForm: FC<CreateBoardProps> = ({
   setIsModalOpen,
   isEdit,
   boardName,
-  handleBoardName,
-  handleSubmit,
+  onSubmit,
   handleDeleteBoard,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isDirty, errors, isValid },
+  } = useForm<BoardFormInputs>({
+    defaultValues: {
+      boardName: boardName || "",
+    },
+    mode: "onBlur",
+  });
+
   return (
-    <FormStyled action={handleSubmit}>
+    <FormStyled onSubmit={handleSubmit(onSubmit)}>
       <JInput
-        value={boardName}
-        onChange={(e) => handleBoardName(e.target.value)}
+        {...register("boardName", { required: "Название обязательно" })}
         placeholder={"Название доски..."}
+        isError={!isValid}
       />
+      {!isValid && <ErrorStyled>{errors?.boardName?.message}</ErrorStyled>}
       <ControlsStyled>
         {isEdit && (
           <JButton
@@ -56,7 +77,6 @@ export const CreateBoardForm: FC<CreateBoardProps> = ({
             icon={<Trash size={16} />}
             onClick={() => {
               setIsModalOpen();
-              handleBoardName("");
               handleDeleteBoard();
             }}
           />
@@ -67,6 +87,7 @@ export const CreateBoardForm: FC<CreateBoardProps> = ({
           outlined
           full
           icon={<Plus size={16} />}
+          disabled={!isDirty || !isValid}
         />
       </ControlsStyled>
     </FormStyled>

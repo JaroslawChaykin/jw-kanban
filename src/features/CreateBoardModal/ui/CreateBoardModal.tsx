@@ -2,9 +2,10 @@ import { useState } from "react";
 import styled from "styled-components";
 import { MoveUpRight, X } from "lucide-react";
 import { IconButton, JButton, Modal, Title } from "../../../shared/ui";
-import { CreateBoardForm } from "./CreateBoardForm";
+import { CreateBoardForm, BoardFormInputs } from "./CreateBoardForm";
 import { useAppDispatch } from "../../../shared/lib/redux";
 import { createBoard } from "../../../entities/boards/BoardActions";
+import { SubmitHandler } from "react-hook-form";
 
 const ModalStyled = styled.div`
   display: flex;
@@ -24,18 +25,16 @@ const ModalHeaderStyled = styled.div`
 
 export const CreateBoardModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [boardName, setBoardName] = useState("");
   const dispatch = useAppDispatch();
 
-  const onSubmit = () => {
+  const onSubmit: SubmitHandler<BoardFormInputs> = (data) => {
     dispatch(
       createBoard({
-        name: boardName,
+        name: data.boardName,
       })
     );
 
     setIsModalOpen(false);
-    setBoardName("");
   };
 
   return (
@@ -60,11 +59,16 @@ export const CreateBoardModal = () => {
           </ModalHeaderStyled>
 
           <CreateBoardForm
-            boardName={boardName}
-            handleBoardName={setBoardName}
-            handleSubmit={() => onSubmit()}
+            onSubmit={onSubmit}
             setIsModalOpen={() => setIsModalOpen(false)}
           />
+          {/* <CreateBoardForm
+            isEdit
+            boardName="New 33"
+            handleDeleteBoard={() => console.log("deleted")}
+            onSubmit={onSubmit}
+            setIsModalOpen={() => setIsModalOpen(false)}
+          /> */}
         </ModalStyled>
       </Modal>
     </div>
